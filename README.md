@@ -19,4 +19,6 @@ copy configuration in nginx.conf and append it to your nginx server configuratio
 
 copy proxy.php to your server, /path/to/proxy.php
 
+make h.js as an url and replace the corresponding line in proxy.php (on line which contains http://grepmusic.com/public/h.js) with that url (http://grepmusic.com/public/h.js).
+
 restart nginx and visit your domain to enjoy it!
