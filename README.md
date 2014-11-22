@@ -5,7 +5,7 @@ a simple url proxy for google in China using php and nginx
 
 Requirements:
 
-  server must not be in China, better with fast network speed between google.com server or China
+  server must not be in China, it is better with fast network speed between google.com server or China
 
   php and nginx must be installed
 

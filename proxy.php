@@ -6,6 +6,9 @@ if($_SERVER['SERVER_NAME'] !== 'g.grepmusic.com')
 
 # 2. if the url is a google Jump Link, then we redirect it by ourselves to avoid visiting *ugly and slow* google's jump page
 $uri = $_SERVER['REQUEST_URI'];
+if(empty($uri) || $uri === '/') {
+  header('Location: /webhp?q=&gws_rd=cr,ssl'); exit;
+}
 if(isset($_GET['url']) && substr($uri, 0, 5) === '/url?') {
 // we use jump link to stop (non-opera) browser from sending HTTP Referer header to keep our website avaliable
 header('Content-Type: text/html');
@@ -56,11 +59,13 @@ $options = array(
   CURLOPT_CUSTOMREQUEST => $_SERVER['REQUEST_METHOD'],
   CURLOPT_RETURNTRANSFER => 1,
 #  CURLOPT_VERBOSE => 1,
-  CURLOPT_HEADER => 1
+  CURLOPT_HEADER => 1,
+  CURLOPT_COOKIEJAR => '/tmp/google_cookie',
+  CURLOPT_COOKIEFILE => '/tmp/google_cookie',
 );
 
 # 5. send request to google and extract response headers and body
-$url = 'https://www.google.com' . $uri;
+$url = 'https://www.google.com.hk' . $uri;
 $ch = curl_init($url);
 curl_setopt_array($ch, $options);
 $response = curl_exec($ch);
